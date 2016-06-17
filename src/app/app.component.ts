@@ -7,6 +7,7 @@ import { RouteConfig, Router } from '@angular/router-deprecated';
 import { AppState } from './app.service';
 import { Home } from './home';
 import { RouterActive } from './router-active';
+import './rxjs-operators';
 
 /*
  * App Component
@@ -22,6 +23,7 @@ import { RouterActive } from './router-active';
     require('./app.css')
   ],
   template: `
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <span router-active>
       <button [routerLink]=" ['Index'] ">
         Index

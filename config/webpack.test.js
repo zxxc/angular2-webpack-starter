@@ -116,8 +116,8 @@ module.exports = {
 
             // Remove TypeScript helpers to be injected
             // below by DefinePlugin
-            removeComments: true
-
+            removeComments: true,
+            experimentalDecorators: true
           }
         },
         exclude: [/\.e2e\.ts$/]

@@ -16,7 +16,28 @@
 
   <div>
     <h4>Local State</h4>
-
+ <alert type="info" >Error  {{errorMessage  }}</alert>
+ <input *ngIf="config.filtering" placeholder="Filter"
+       [ngTableFiltering]="config.filtering"
+       (tableChanged)="onChangeTable(config)"/>
+ <ng-table [config]="config.sorting"
+           (tableChanged)="onChangeTable(config)"
+           [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            (pageChanged)="onChangeTable(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+<pre *ngIf="config.paging" class="card card-block card-header">Page:  / </pre>
+ 
+  
     <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
 
       <input
@@ -35,7 +56,7 @@
       -->
 
     <pre>this.localState = {{ localState | json }}</pre>
-
+    <pre>this.repositories = {{ repositories | json }}</pre>
   </div>
 
 </div>
