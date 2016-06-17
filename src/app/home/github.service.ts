@@ -19,9 +19,15 @@ export class GitHubService {
                     .map(this.extractData)
                     .catch(this.handleError);
   }
-  private extractData(res: Response) {
+  private extractData(res: Response):GitHubRepository[] {
     let body = res.json();
-    return body.data || { };
+    console.log(body);
+   return body.map(function(repository){
+      var rep = new GitHubRepository();
+      rep.Name = repository.name;
+      rep.ForkCount = repository.forks_count;
+      return rep;
+    });
   }
   private handleError (error: any) {
     // In a real world app, we might use a remote logging infrastructure

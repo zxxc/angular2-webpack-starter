@@ -59,8 +59,8 @@ export class Home{
 
   public rows:Array<any> = [];
   public columns:Array<any> = [
-    {title: 'Name', name: 'name'},
-    {title: 'Forks Count', name: 'forks_count', sort: true}
+    {title: 'Name', name: 'Name'},
+    {title: 'Forks Count', name: 'ForkCount', sort: true}
   ];
 
   public page:number = 1;
@@ -72,15 +72,15 @@ export class Home{
   public config:any = {
     paging: true,
     sorting: {columns: this.columns},
-    filtering: {filterString: '', columnName: 'name'}
+    filtering: {filterString: '', columnName: this.columns[0].name}
   };
 
   private data:Array<GitHubRepository> = [];
 
   ngOnInit() {
-    console.log('hello `Home` component');
    this.gitHubService.getRepositories()
-                   .subscribe(this.repositoriesResolved,
+                   .subscribe(repos=>{
+                     return this.repositoriesResolved(repos)},
                      error =>  this.errorMessage = <any>error);  
                      
     
@@ -157,11 +157,13 @@ export class Home{
     this.length = sortedData.length;
   }
 
-   repositoriesResolved(repos:any){
+ private  repositoriesResolved(repos:any):any{
                       this.repositories = repos;
                        console.info('repost',repos);
                        this.length = repos.length;
+                       this.data=repos;
                        this.onChangeTable(this.config);
+                       return repos;
   }
   
  

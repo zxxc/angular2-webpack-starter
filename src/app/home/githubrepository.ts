@@ -1,3 +1,4 @@
 export class GitHubRepository{
-    name:string
+    Name:string;
+    ForkCount:number;
 }
