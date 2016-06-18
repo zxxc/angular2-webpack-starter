@@ -6,6 +6,7 @@ import { RouteConfig, Router } from '@angular/router-deprecated';
 
 import { AppState } from './app.service';
 import { Home } from './home';
+import { Contributions  } from './contributors';
 import { RouterActive } from './router-active';
 import './rxjs-operators';
 
@@ -30,13 +31,8 @@ import './rxjs-operators';
       </button>
     </span>
     <span router-active>
-      <button [routerLink]=" ['Home'] " class="btn btn-primary">
-        Home
-      </button>
-    </span>
-    <span router-active>
-      <button [routerLink]=" ['About'] " class="btn btn-primary">
-        About
+      <button [routerLink]=" ['Contributors'] " class="btn btn-primary">
+        Contributors
       </button>
     </span>
 
@@ -48,10 +44,8 @@ import './rxjs-operators';
   `
 })
 @RouteConfig([
-  { path: '/',      name: 'Index', component: Home, useAsDefault: true },
-  { path: '/home',  name: 'Home',  component: Home },
-  // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
-  { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') }
+  { path: '/',             name: 'Index', component: Home, useAsDefault: true },
+  { path: '/Contributors', name: 'Contributors', component: Contributions }
 ])
 export class App {
   angularclassLogo = 'assets/img/angularclass-avatar.png';

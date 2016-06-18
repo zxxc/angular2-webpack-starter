@@ -1,19 +1,21 @@
-<alert *ngIf="errorMessage" type="info" >Error  {{errorMessage  }}</alert>
- <input *ngIf="config.filtering" placeholder="Filter"
-       [ngTableFiltering]="config.filtering"
-       (tableChanged)="onChangeTable(config)"/>
- <ng-table [config]="config.sorting"
-           (tableChanged)="onChangeTable(config)"
-           [rows]="rows" [columns]="columns">
-</ng-table>
-<pagination *ngIf="config.paging"
-            class="pagination-sm"
-            [(ngModel)]="page"
-            [totalItems]="length"
-            [itemsPerPage]="itemsPerPage"
-            [maxSize]="maxSize"
-            [boundaryLinks]="true"
-            [rotate]="false"
-            (pageChanged)="onChangeTable(config, $event)"
-            (numPages)="numPages = $event">
-</pagination>
+ <alert *ngIf="errorMessage" type="info" >Error  {{errorMessage  }}</alert>
+ <div *ngIf="length">
+      <input *ngIf="config.filtering " placeholder="Filter"
+            [ngTableFiltering]="config.filtering"
+            (tableChanged)="onChangeTable(config)"/>
+      <ng-table [config]="config.sorting"
+            (tableChanged)="onChangeTable(config)"
+            [rows]="rows" [columns]="columns">
+      </ng-table>
+      <pagination *ngIf="config.paging"
+                  class="pagination-sm"
+                  [(ngModel)]="page"
+                  [totalItems]="length"
+                  [itemsPerPage]="itemsPerPage"
+                  [maxSize]="maxSize"
+                  [boundaryLinks]="true"
+                  [rotate]="false"
+                  (pageChanged)="onChangeTable(config, $event)"
+                  (numPages)="numPages = $event">
+      </pagination>
+</div>

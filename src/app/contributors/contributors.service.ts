@@ -1,6 +1,6 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
-
+import { Jsonp,Http, Response,Headers,BaseRequestOptions } from '@angular/http';
+import { JSONP_PROVIDERS } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { Contributor }     from './Contributor';
 
@@ -9,19 +9,36 @@ import { Contributor }     from './Contributor';
  
 @Injectable()
 export class ContributorsService {
-  constructor (private http: Http) {}
+  constructor (private http: Http, private jsonp:Jsonp) {}
   
-  private contributorsFile = 'https://www.x-formation.com/wp-content/uploads/2014/09/contributors.json'; 
+  private contributorsFile = 'https://www.x-formation.com/wp-content/uploads/2014/09/contributors.json?callback=JSONP_CALLBACK'; 
   
-  getRepositories (): Observable<Contributor[]> {
-    return this.http.get(this.contributorsFile)                
+  getContributors (): Observable<Contributor[]> {
+
+ return this.jsonp.get(this.contributorsFile)                
                     .map(this.extractData)
-                    .catch(this.handleError);
+                    
+                                        .catch(this.handleError)
+
+
+                                        ;
+
+    // var headers = new Headers();
+    // console.log('h1',this. http);
+    // headers.append("Origin",'http://localhost:3001');
+    // //headers.delete("Origin");
+    // console.log('h2', headers);
+    // this.http.
+    // return this.http.get(this.contributorsFile,{
+    //   headers    
+    // })                
+    //                 .map(this.extractData)
+    //                 .catch(this.handleError);
   }
   
   private extractData(res: Response):Contributor[] {
     let body = res.json();
-    console.log(body);
+    console.log('cont',body);
    return body.map(function(item){
       var contributor = new Contributor();
       contributor.Name = item.nickname;
@@ -35,7 +52,7 @@ export class ContributorsService {
     // We'd also dig deeper into the error to get a better message
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
+    console.error(errMsg, error); // log to console instead
     return Observable.throw(errMsg);
   }
 }

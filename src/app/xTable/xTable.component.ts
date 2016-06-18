@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 import { HTTP_PROVIDERS } from '@angular/http';
-import {Http} from 'angular2/http';
+import { Http} from 'angular2/http';
  import {NG_TABLE_DIRECTIVES} from 'ng2-table/ng2-table';
 import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgIf} from '@angular/common';
