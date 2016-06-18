@@ -23,19 +23,19 @@ import './rxjs-operators';
     require('./app.css')
   ],
   template: `
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <span router-active>
-      <button [routerLink]=" ['Index'] ">
-        Index
+      <button [routerLink]=" ['Index'] " class="btn btn-primary">
+        Repositories
       </button>
     </span>
     <span router-active>
-      <button [routerLink]=" ['Home'] ">
+      <button [routerLink]=" ['Home'] " class="btn btn-primary">
         Home
       </button>
     </span>
     <span router-active>
-      <button [routerLink]=" ['About'] ">
+      <button [routerLink]=" ['About'] " class="btn btn-primary">
         About
       </button>
     </span>
@@ -56,8 +56,8 @@ import './rxjs-operators';
 export class App {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   loading = false;
-  name = 'Angular 2 Webpack Starter';
-  url = 'https://twitter.com/AngularClass';
+  name = 'X-Formation';
+  url = 'https://x-formation.com';
 
   constructor(
     public appState: AppState) {
@@ -69,11 +69,3 @@ export class App {
   }
 
 }
-
-/*
- * Please review the https://github.com/AngularClass/angular2-examples/ repo for
- * more angular app examples that you may copy/paste
- * (The examples may not be updated as quickly. Please open an issue on github for us to update it)
- * For help or questions please contact us at @AngularClass on twitter
- * or our chat on Slack at https://AngularClass.com/slack-join
- */

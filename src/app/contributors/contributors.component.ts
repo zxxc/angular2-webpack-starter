@@ -1,0 +1,7 @@
+@Component({
+    selector:'contributors',
+    providers:[
+        
+    ]
+
+});

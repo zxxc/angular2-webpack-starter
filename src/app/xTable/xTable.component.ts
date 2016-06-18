@@ -1,30 +1,19 @@
 import { Component } from '@angular/core';
 
-import { AppState } from '../app.service';
-import { Title } from './title';
-import { XLarge } from './x-large';
 import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { GitHubService} from './github.service'
-import { GitHubRepository} from './githubrepository'
 import {Http} from 'angular2/http';
  import {NG_TABLE_DIRECTIVES} from 'ng2-table/ng2-table';
 import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgIf} from '@angular/common';
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'home',  // <home></home>
+  selector: 'xTable', 
   // We need to tell Angular's Dependency Injection which providers are in our app.
-  providers: [
-    Title, GitHubService
-  ],
+  providers: [  ],
   // We need to tell Angular's compiler which directives are in our template.
   // Doing so will allow Angular to attach our behavior to an element
   directives: [
-    XLarge,
     AlertComponent,
     NG_TABLE_DIRECTIVES,
     PAGINATION_DIRECTIVES, 
@@ -36,27 +25,15 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgIf} from '@angular/common';
   
   // We need to tell Angular's compiler which custom pipes are in our template.
   pipes: [ ],
-  // Our list of styles in our component. We may add more to compose many styles together
-  styles: [ require('./home.css') ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require('./home.html')
+  styles: [ require('./xTable.css') ],
+  template: require('./xTable.html'),
+  inputs:[ 'columns']
 })
-export class Home{
+export class xTable{
   errorMessage: string;
   repositories: GitHubRepository[];
   mode = 'Observable';
-  
-  date: Date = new Date();
-  // Set our default values
-  localState = { value: '' };
-  // TypeScript public modifiers
-  
-  constructor(public appState: AppState, 
-              public title: Title,
-              public gitHubService: GitHubService) {
-
-  }
-
+    
   public rows:Array<any> = [];
   public columns:Array<any> = [
     {title: 'Name', name: 'Name'},
@@ -71,8 +48,13 @@ export class Home{
 
   public config:any = {
     paging: true,
-    sorting: {columns: this.columns},
-    filtering: {filterString: '', columnName: this.columns[0].name}
+    sorting: {
+        columns: this.columns
+    },
+    filtering: {
+        filterString: '', 
+        columnName: this.columns[0].name
+    }
   };
 
   private data:Array<GitHubRepository> = [];

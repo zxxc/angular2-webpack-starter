@@ -2,31 +2,32 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
-import { GitHubRepository }     from './GitHubRepository';
+import { Contributor }     from './Contributor';
 
  import 'rxjs/add/operator/map';
  import 'rxjs/add/operator/catch';
  
 @Injectable()
-export class GitHubService {
+export class ContributorsService {
   constructor (private http: Http) {}
   
-  private repoUrl = 'https://api.github.com/orgs/x-formation/repos';  // URL to web API
+  private contributorsFile = 'https://www.x-formation.com/wp-content/uploads/2014/09/contributors.json'; 
   
-  getRepositories (): Observable<GitHubRepository[]> {
-    return this.http.get(this.repoUrl)                
+  getRepositories (): Observable<Contributor[]> {
+    return this.http.get(this.contributorsFile)                
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   
-  private extractData(res: Response):GitHubRepository[] {
+  private extractData(res: Response):Contributor[] {
     let body = res.json();
     console.log(body);
-   return body.map(function(repository){
-      var rep = new GitHubRepository();
-      rep.Name = repository.name;
-      rep.ForkCount = repository.forks_count;
-      return rep;
+   return body.map(function(item){
+      var contributor = new Contributor();
+      contributor.Name = item.nickname;
+      contributor.Team = item.team;
+      contributor.Contributions = item.contributions;
+      return contributor;
     });
   }
   private handleError (error: any) {
