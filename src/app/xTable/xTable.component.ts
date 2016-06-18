@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 import { HTTP_PROVIDERS } from '@angular/http';
@@ -6,7 +6,7 @@ import {Http} from 'angular2/http';
  import {NG_TABLE_DIRECTIVES} from 'ng2-table/ng2-table';
 import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgIf} from '@angular/common';
-
+import { Observable }     from 'rxjs/Observable';
 @Component({
   selector: 'xTable', 
   // We need to tell Angular's Dependency Injection which providers are in our app.
@@ -27,18 +27,15 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgIf} from '@angular/common';
   pipes: [ ],
   styles: [ require('./xTable.css') ],
   template: require('./xTable.html'),
-  inputs:[ 'columns']
+  inputs:[ 'columns','dataService']
 })
 export class xTable{
   errorMessage: string;
-  repositories: GitHubRepository[];
   mode = 'Observable';
     
   public rows:Array<any> = [];
-  public columns:Array<any> = [
-    {title: 'Name', name: 'Name'},
-    {title: 'Forks Count', name: 'ForkCount', sort: true}
-  ];
+  @Input() public columns;
+  @Input() public dataService:Observable<any[]>;
 
   public page:number = 1;
   public itemsPerPage:number = 3;
@@ -53,29 +50,23 @@ export class xTable{
     },
     filtering: {
         filterString: '', 
-        columnName: this.columns[0].name
+        columnName: 'Name',//this.columns[0].name
     }
   };
 
-  private data:Array<GitHubRepository> = [];
+  private data:Array<any> = [];
 
   ngOnInit() {
-   this.gitHubService.getRepositories()
-                   .subscribe(repos=>{
-                     return this.repositoriesResolved(repos)},
+    console.log('dataService',this.dataService);
+    this.dataService.subscribe(items=>{
+                     return this.dataResolved(items)},
                      error =>  this.errorMessage = <any>error);  
                      
     
     // this.title.getData().subscribe(data => this.data = data);
   }
  
-
-  submitState(value) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
-  }
-  
+ 
   public changePage(page:any, data:Array<any> = this.data):Array<any> {
     console.log(page);
     let start = (page.page - 1) * page.itemsPerPage;
@@ -139,13 +130,12 @@ export class xTable{
     this.length = sortedData.length;
   }
 
- private  repositoriesResolved(repos:any):any{
-                      this.repositories = repos;
-                       console.info('repost',repos);
-                       this.length = repos.length;
-                       this.data=repos;
+ private  dataResolved(items:any):any{
+                       console.info('items',items);
+                       this.length = items.length;
+                       this.data=items;
                        this.onChangeTable(this.config);
-                       return repos;
+                       return items;
   }
   
  

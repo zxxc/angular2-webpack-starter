@@ -1,8 +1,7 @@
 <div class="card-container">
-  
-  <div>
-  <h4>X-Formation Repository</h4>
-<xTable></xTable>
+    <h4>X-Formation Repository</h4>
+<xTable  [columns]="columns" [dataService]="repositoriesResolver"></xTable>
+ 
   
     <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
 
@@ -14,14 +13,6 @@
 
       <button md-raised-button color="primary">Submit Value</button>
     </form>
-    <!--
-        <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
-        Rather than wiring up two-way data-binding ourselves with [value] and (input)
-        we can use Angular's [(ngModel)] syntax
-        <input type="text" [(ngModel)]="localState.value" autofocus>
-      -->
-
-    <pre>this.localState = {{ localState | json }}</pre>
-  </div>
+   
 
 </div>
