@@ -1,5 +1,5 @@
 import { Injectable }     from '@angular/core';
-import { Jsonp,Http, Response,Headers,BaseRequestOptions } from '@angular/http';
+import { Http, Response,Headers,BaseRequestOptions } from '@angular/http';
 import { JSONP_PROVIDERS } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { Contributor }     from './Contributor';
@@ -9,31 +9,17 @@ import { Contributor }     from './Contributor';
  
 @Injectable()
 export class ContributorsService {
-  constructor (private http: Http, private jsonp:Jsonp) {}
+  constructor (private http: Http) {}
   
-  private contributorsFile = 'https://www.x-formation.com/wp-content/uploads/2014/09/contributors.json?callback=JSONP_CALLBACK'; 
+  private contributorsFile = 'http://cors.io/?u=https://www.x-formation.com/wp-content/uploads/2014/09/contributors.json'; 
   
   getContributors (): Observable<Contributor[]> {
 
- return this.jsonp.get(this.contributorsFile)                
+ return this.http.get(this.contributorsFile)                
                     .map(this.extractData)
-                    
-                                        .catch(this.handleError)
+                    .catch(this.handleError);
 
 
-                                        ;
-
-    // var headers = new Headers();
-    // console.log('h1',this. http);
-    // headers.append("Origin",'http://localhost:3001');
-    // //headers.delete("Origin");
-    // console.log('h2', headers);
-    // this.http.
-    // return this.http.get(this.contributorsFile,{
-    //   headers    
-    // })                
-    //                 .map(this.extractData)
-    //                 .catch(this.handleError);
   }
   
   private extractData(res: Response):Contributor[] {

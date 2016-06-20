@@ -1,5 +1,5 @@
  <alert *ngIf="errorMessage" type="info" >Error  {{errorMessage  }}</alert>
- <div *ngIf="length">
+ <div *ngIf="!errorMessage">
       <input *ngIf="config.filtering " placeholder="Filter"
             [ngTableFiltering]="config.filtering"
             (tableChanged)="onChangeTable(config)"/>
