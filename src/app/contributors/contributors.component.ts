@@ -10,7 +10,7 @@ import {NG_TABLE_DIRECTIVES} from 'ng2-table/ng2-table';
 import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgIf} from '@angular/common';
 import { Observable }     from 'rxjs/Observable';
-import { xTable } from './../xTable/'
+import { xTable, xTableColumnConfig, xTableSortingDirection } from './../xTable/'
 import { Contributor } from './contributor'
 import { ContributorsService } from './contributors.service'
 
@@ -41,24 +41,21 @@ import { ContributorsService } from './contributors.service'
     template: require('./contributors.html')
 })
 export class Contributions {
-    mode = 'Observable';
 
     constructor(public contributorsService: ContributorsService) {
 
     }
 
-    public columns: Array<any> = [
-        { title: 'Name', name: 'Name', sort: true },
-        { title: 'Team', name: 'Team', sort: true },
-        { title: 'Contributions', name: 'Contributions', sort: true },
+    public columns: Array<xTableColumnConfig> = [
+        new xTableColumnConfig('Name', 'Name', true),
+        new xTableColumnConfig('Team', 'Team',  true),
+        new xTableColumnConfig('Contributions', 'Contributions', false, true, xTableSortingDirection.Descending)
     ];
 
     public contributorsResolver: Observable<Contributor[]>;
     ngOnInit() {
         this.contributorsResolver = this.contributorsService.getContributors();
     }
-
-
 }
 
 

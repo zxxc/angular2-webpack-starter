@@ -21,7 +21,6 @@ export class GitHubService {
   
   private extractData(res: Response):GitHubRepository[] {
     let body = res.json();
-    console.log(body);
    return body.map(function(repository){
       var rep = new GitHubRepository();
       rep.Name = repository.name;

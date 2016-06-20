@@ -1,18 +1,5 @@
 <div class="card-container">
     <h4>X-Formation Repository</h4>
 <xTable  [columns]="columns" [dataService]="repositoriesResolver"></xTable>
- 
-  
-    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
-
-      <input
-        [value]="localState.value"
-        (input)="localState.value = $event.target.value"
-        placeholder="Submit Local State to App State"
-        autofocus>
-
-      <button md-raised-button color="primary">Submit Value</button>
-    </form>
    
-
 </div>
