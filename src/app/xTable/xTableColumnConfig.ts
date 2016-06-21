@@ -25,9 +25,10 @@ class xTableColumnConfig {
         return this.SortDirection===xTableSortingDirection.Descending? 'desc':'asc';    
     }
      set sort(value){
+          
          if(value==='desc'){
             this.SortDirection=xTableSortingDirection.Descending;
-         } if(value==='asc'){
+         }else if(value==='asc'){
              this.SortDirection=xTableSortingDirection.Ascending;
          }else{
              this.SortDirection = null;

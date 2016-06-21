@@ -41,8 +41,7 @@ export class xTable {
   public rows: Array<any> = [];
 
   public page: number = 1;
-  public itemsPerPage: number = 3;
-  public maxSize: number = 5;
+  public itemsPerPage: number = 30;
   public numPages: number = 1;
   public length: number = 0;
 
@@ -95,6 +94,7 @@ export class xTable {
 
     // simple sorting
     return data.sort((previous: any, current: any) => {
+      
       if (previous[columnName] > current[columnName]) {
         return sort === xTableSortingDirection.Descending ? -1 : 1;
       } else if (previous[columnName] < current[columnName]) {
