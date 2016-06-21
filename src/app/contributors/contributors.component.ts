@@ -47,8 +47,8 @@ export class Contributions {
     }
 
     public columns: Array<xTableColumnConfig> = [
-        new xTableColumnConfig('Name', 'Name', true),
-        new xTableColumnConfig('Team', 'Team', true),
+        new xTableColumnConfig('Name', 'Name', true,true),
+        new xTableColumnConfig('Team', 'Team', false,true),
         new xTableColumnConfig('Contributions', 'Contributions', false, true, xTableSortingDirection.Descending)
     ];
 

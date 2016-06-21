@@ -32,7 +32,7 @@ import { xTableSortingDirection }     from './xTableSortingDirection';
   inputs: ['columns', 'dataService']
 })
 
-export class xTable{
+export class xTable {
   @Input() public columns: xTableColumnConfig[];
   @Input() public dataService: Observable<any[]>;
 
@@ -49,10 +49,10 @@ export class xTable{
   public config: any = {
     paging: true,
     sorting: {
-        columns:this.columns
+      columns: this.columns
     },
     filtering: {
-      filterString: ''      
+      filterString: ''
     }
   };
 
@@ -81,11 +81,11 @@ export class xTable{
     let columns = this.columns || [];
     let columnName: string = void 0;
     let sort: xTableSortingDirection;
-
+    
     for (let i = 0; i < columns.length; i++) {
-      if (columns[i].Sortable) {
+      if (columns[i].Sortable && columns[i].SortDirection != null) {
         columnName = columns[i].Name;
-        sort = columns[i].SortDirection || xTableSortingDirection.Ascending;
+        sort = columns[i].SortDirection;
       }
     }
 

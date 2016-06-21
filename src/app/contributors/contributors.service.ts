@@ -18,14 +18,12 @@ export class ContributorsService {
  return this.http.get(this.contributorsFile)                
                     .map(this.extractData)
                     .catch(this.handleError);
-
-
   }
   
   private extractData(res: Response):Contributor[] {
     let body = res.json();
-    console.log('cont',body);
-   return body.map(function(item){
+    
+    return body.map(function(item){
       var contributor = new Contributor();
       contributor.Name = item.nickname;
       contributor.Team = item.team;
