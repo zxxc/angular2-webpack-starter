@@ -1,14 +1,14 @@
 {
-  "name": "angular2-webpack-starter",
+  "name": "xTask",
   "version": "5.0.5",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
+  "description": "task for x-formation",
   "keywords": [
     "angular2",
     "webpack",
     "typescript"
   ],
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
+  "author": "",
+  "homepage": "https://github.com/zxxc/xTestTask/tree/xTestTask",
   "license": "MIT",
   "scripts": {
     "rimraf": "rimraf",
@@ -129,12 +129,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
+    "url": "https://github.com/zxxc/xTestTask/tree/xTestTask"
   },
-  "bugs": {
-    "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
-  },
-  "engines": {
+   "engines": {
     "node": ">= 4.2.1",
     "npm": ">= 3"
   }
