@@ -69,6 +69,7 @@
     "@angular/platform-server": "2.0.0-rc.2",
     "@angular/router": "2.0.0-rc.2",
     "@angular/router-deprecated": "2.0.0-rc.2",
+    "bootstrap": "^3.3.6",
     "core-js": "^2.4.0",
     "ng2-bootstrap": "^1.0.17",
     "ng2-table": "^1.0.2",

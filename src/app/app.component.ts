@@ -20,11 +20,11 @@ import './rxjs-operators';
   providers: [ ],
   directives: [ RouterActive ],
   encapsulation: ViewEncapsulation.None,
-  styles: [
-    require('./app.css')
-  ],
+  styles: [    
+      require('./app.css'),
+      require('./../../node_modules/bootstrap/dist/css/bootstrap.min.css')
+    ],
   template: `
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <span router-active>
       <button [routerLink]=" ['Index'] " class="btn btn-primary">
         Repositories
@@ -49,7 +49,7 @@ export class App {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   loading = false;
   name = 'X-Formation';
-  url = 'https://x-formation.com';
+  url = 'http://x-formation.com';
 
   constructor(
     public appState: AppState) {
@@ -57,7 +57,6 @@ export class App {
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
   }
 
 }

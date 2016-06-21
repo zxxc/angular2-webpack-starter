@@ -114,7 +114,6 @@ export class xTable{
         var column = this.columns[i];
 
         if (column.Filterable && item[column.Name]) {
-          console.log('XXX', this.config.filtering.filterString);
           return item[column.Name].match(this.config.filtering.filterString);
         }
       }
